@@ -4,25 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.galileo.android.marvelapp.fragments.PrincipalFragment">
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputSuper"
-        android:hint="@string/main.input.hint"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btnSelect"
-        android:layout_toStartOf="@+id/btnSelect" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main.btn"
-        android:id="@+id/btnSelect"
-        android:layout_alignBottom="@+id/inputSuper"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +12,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/main.mensaje.super"
         android:id="@+id/titleSuper"
-        android:layout_below="@+id/inputSuper"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
 

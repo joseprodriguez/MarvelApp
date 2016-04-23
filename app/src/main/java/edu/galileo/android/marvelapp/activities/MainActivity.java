@@ -1,48 +1,67 @@
 package edu.galileo.android.marvelapp.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import java.util.ArrayList;
+import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import edu.galileo.android.marvelapp.R;
-import edu.galileo.android.marvelapp.utilities.SuperInfo;
+import edu.galileo.android.marvelapp.adapter.SlidePagerAdapter;
+import edu.galileo.android.marvelapp.fragments.EntireFragment;
+import edu.galileo.android.marvelapp.fragments.MapaFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
     private final static String TAG = "MainActivity";
-    @Bind(R.id.inputSuper) EditText inputSuper;
-    @Bind(R.id.description) TextView description;
-    @Bind(R.id.titleSuper) TextView nombre;
-    @Bind(R.id.imagen) ImageView imagen;
-
-    private SuperInfo personaje;
+    private ViewPager pager;
+    private PagerAdapter pagerAdapt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Log.e(TAG, "se creo");
 
-        this.personaje = new SuperInfo("Capitán América", "04n", "ajsfñasjfñasjfñalfjasklfasñfañlkfafñafkasfñajñfda");
+
+        TabLayout tablay = (TabLayout) findViewById(R.id.tab_layout);
+        tablay.addTab(tablay.newTab().setText("Principal"));
+        tablay.addTab(tablay.newTab().setText("Mapa"));
+        tablay.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        List<Fragment> fragments = getFragments();
+
+        pager = (ViewPager) findViewById(R.id.pager);
+        pagerAdapt = new SlidePagerAdapter(getSupportFragmentManager(), fragments);
+        pager.setAdapter(pagerAdapt);
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablay));
+        tablay.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
-    @OnClick(R.id.btnSelect)
-    public void click(){
-        String per = inputSuper.getText().toString();
-        Log.e(TAG, per);
-        nombre.setText(this.personaje.getName());
-        description.setText(this.personaje.getDescription());
-        String strIcono = this.personaje.getImg();
-        String iconUrl = "http://openweathermap.org/img/w/" + strIcono + ".png";
-        Log.e(TAG, iconUrl);
-        Glide.with(this).load(iconUrl).into(imagen);
+    private List<Fragment> getFragments() {
+        List<Fragment> fList = new ArrayList<>();
+
+        fList.add(new EntireFragment());
+        fList.add(new MapaFragment());
+        return fList;
     }
 }

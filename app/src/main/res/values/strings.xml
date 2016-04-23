@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MarvelApp</string>
     <string name="main.input.hint">Escriba su personaje...</string>
-    <string name="main.btn">Seleccionar</string>
+    <string name="main.btn">Buscar</string>
     <string name="main.mensaje.super">Marvel</string>
     <string name="main.mensaje.descripcion"> Es una editorial de cómics estadounidense creada en 1939, inicialmente con el nombre de Timely Comics. Entre sus personajes emblemáticos del género superheroico se encuentran Spider-Man, Capitán América, Iron Man, Hulk, Thor, Wolverine, Daredevil, Magneto y los X-Men, entre otros.</string>
+    <string name="mapa.mensaje.mientras"> Aquí debería ir el mapa :)</string>
 </resources>
